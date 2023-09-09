@@ -107,7 +107,7 @@ spec:
           args:
             - --api.insecure
             - --providers.kubernetesingress
-            - --providers.kubernetesingress.labelselector=app=traefik
+            # - --providers.kubernetesingress.labelselector=app=traefik
             - --providers.kubernetesingress.ingressendpoint.publishedservice=traefik-gateway/traefik-gateway
           ports:
             - name: web
