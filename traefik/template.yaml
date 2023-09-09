@@ -82,7 +82,7 @@ metadata:
     app.kubernetes.io/instance: traefik-gateway
     app.kubernetes.io/name: traefik-gateway
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/instance: traefik-gateway
