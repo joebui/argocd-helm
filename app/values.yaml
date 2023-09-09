@@ -52,7 +52,7 @@ ingress:
     # nginx.ingress.kubernetes.io/rewrite-target: /
     # nginx.ingress.kubernetes.io/ssl-redirect: "false"
   hosts:
-    - host: ada1d7de53d7c4263bc60ae4afa48f29-25f0aad546335809.elb.us-west-2.amazonaws.com
+    - host: aaa.com
       paths:
         - path: /
           pathType: ImplementationSpecific
