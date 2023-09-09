@@ -409,6 +409,7 @@ metadata:
 spec:
   minReadySeconds: 0
   revisionHistoryLimit: 10
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/component: controller
