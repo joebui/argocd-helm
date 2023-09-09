@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nginx.fullname" . }}
+  annotations:
+    mesh.traefik.io/traffic-type: "http"
+    mesh.traefik.io/retry-attempts: "2"
+  labels:
+    {{- include "nginx.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "nginx.selectorLabels" . | nindent 4 }}
