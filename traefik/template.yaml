@@ -73,7 +73,7 @@ subjects:
     namespace: traefik-gateway
 
 ---
-kind: Deployment
+kind: DaemonSet
 apiVersion: apps/v1
 metadata:
   name: traefik-gateway
@@ -82,7 +82,6 @@ metadata:
     app.kubernetes.io/instance: traefik-gateway
     app.kubernetes.io/name: traefik-gateway
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/instance: traefik-gateway
