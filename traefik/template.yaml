@@ -21,6 +21,9 @@ rules:
     resources:
       - services
       - endpoints
+      - configmaps
+      - nodes
+      - pods
       - secrets
       - namespaces
     verbs:
