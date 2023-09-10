@@ -24,6 +24,7 @@ service:
   annotations:
     traefik.ingress.kubernetes.io/service.nativelb: "true"
     traefik.ingress.kubernetes.io/service.sticky.cookie: "false"
+    traefik.ingress.kubernetes.io/service.passhostheader: "false"
 
 ingress:
   enabled: true
