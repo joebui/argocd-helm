@@ -19,25 +19,26 @@ podSecurityContext: {}
 securityContext: {}
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 80
+  annotations:
+    traefik.ingress.kubernetes.io/service.nativelb: "true"
+    traefik.ingress.kubernetes.io/service.sticky.cookie: "false"
 
 ingress:
   enabled: true
   # className: "nginx"
   annotations:
-    # {}
+    traefik.ingress.kubernetes.io/router.tls: "false"
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
     # nginx.ingress.kubernetes.io/rewrite-target: /
     # nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: http
   hosts:
     - host: "*.elb.ap-southeast-1.amazonaws.com"
       paths:
         - path: /
-          pathType: Prefix
+          pathType: Exact
   tls: []
 
 resources:
