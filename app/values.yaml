@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: dmportella/expressjs
   pullPolicy: IfNotPresent
-  tag: "stable-alpine-slim"
+  tag: latest
 
 imagePullSecrets: []
 nameOverride: ""
@@ -20,7 +20,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
   annotations:
     traefik.ingress.kubernetes.io/service.nativelb: "true"
     traefik.ingress.kubernetes.io/service.sticky.cookie: "false"
