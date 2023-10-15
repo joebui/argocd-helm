@@ -1,9 +1,14 @@
 replicaCount: 1
 
 image:
-  repository: dmportella/expressjs
-  pullPolicy: Always
-  tag: latest
+  bff:
+    repository: dmportella/expressjs
+    tag: latest
+    pullPolicy: Always
+  sidecar:
+    repository: nginx
+    tag: latest
+    pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""
@@ -21,7 +26,7 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
-  target_port: 8080
+  target_port: 80
   annotations:
     traefik.ingress.kubernetes.io/service.nativelb: "true"
     traefik.ingress.kubernetes.io/service.sticky.cookie: "false"
@@ -47,7 +52,7 @@ resources:
     memory: 128Mi
 
 autoscaling:
-  enabled: true
+  enabled: false
   minReplicas: 1
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
