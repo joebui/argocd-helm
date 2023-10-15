@@ -5,5 +5,5 @@ image:
     pullPolicy: Always
   sidecar:
     repository: ghcr.io/joebui/argocd-deployment:main
-    tag: latest
+    tag: main
     pullPolicy: Always
