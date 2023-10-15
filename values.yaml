@@ -40,7 +40,7 @@ ingress:
     - host: "*.elb.ap-southeast-1.amazonaws.com"
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tls: []
 
 resources:
