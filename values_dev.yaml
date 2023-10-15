@@ -4,6 +4,6 @@ image:
     tag: latest
     pullPolicy: Always
   sidecar:
-    repository: nginx
+    repository: ghcr.io/joebui/argocd-deployment:main
     tag: latest
     pullPolicy: Always

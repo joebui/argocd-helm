@@ -4,9 +4,11 @@ image:
     tag: latest
     pullPolicy: Always
   sidecar:
-    repository: nginx
+    repository: ghcr.io/joebui/argocd-deployment:main
     tag: latest
     pullPolicy: Always
 
 autoscaling:
   enabled: true
+  minReplicas: 3
+  maxReplicas: 6
