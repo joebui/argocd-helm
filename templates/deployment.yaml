@@ -28,18 +28,14 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: nginx
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.sidecar.repository }}:{{ .Values.image.sidecar.tag }}"
-          imagePullPolicy: {{ .Values.image.sidecar.pullPolicy }}
+        - name: backend
+          image: "{{ .Values.image.bff.repository }}:{{ .Values.image.bff.tag }}"
+          imagePullPolicy: {{ .Values.image.bff.pullPolicy }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
+              targetPort: {{ .Values.service.target_port }}
               protocol: TCP
-        - name: bff
-          image: "{{ .Values.image.bff.repository }}:{{ .Values.image.bff.tag }}"
-          imagePullPolicy: {{ .Values.image.bff.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
