@@ -35,7 +35,7 @@ ingress:
   enabled: true
   annotations: []
   hosts:
-    - host: "hello-world.com"
+    - host: "*.elb.ap-southeast-1.amazonaws.com"
       paths:
         - path: /
           pathType: Prefix
