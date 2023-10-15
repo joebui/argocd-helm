@@ -1,9 +1,5 @@
-FROM nginx:stable-alpine-slim
+FROM envoyproxy/envoy:distroless-dev
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-RUN ls -lh /etc/nginx/conf.d
+COPY envoy.yaml /etc/envoy/envoy.yaml
 
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
