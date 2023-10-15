@@ -24,7 +24,7 @@ podSecurityContext: {}
 securityContext: {}
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 80
   target_port: 80
   annotations:
