@@ -1,6 +1,6 @@
 FROM nginx:stable-alpine-slim
 
-COPY nginx.conf /etc/nginx/conf.d/service.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN ls -lh /etc/nginx/conf.d
 
