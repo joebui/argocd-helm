@@ -12,3 +12,12 @@ autoscaling:
   enabled: true
   minReplicas: 3
   maxReplicas: 6
+
+ingress:
+  enabled: true
+  annotations: []
+  hosts:
+    - host: "*.elb.ap-southeast-1.amazonaws.com"
+      paths:
+        - path: /prod
+          pathType: Prefix
