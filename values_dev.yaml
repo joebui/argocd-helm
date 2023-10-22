@@ -7,3 +7,12 @@ image:
     repository: ghcr.io/joebui/argocd-deployment
     tag: main
     pullPolicy: Always
+
+ingress:
+  enabled: true
+  annotations: []
+  hosts:
+    - host: "*.elb.ap-southeast-1.amazonaws.com"
+      paths:
+        - path: /dev
+          pathType: Prefix
