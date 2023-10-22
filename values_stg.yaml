@@ -10,3 +10,12 @@ image:
 
 autoscaling:
   enabled: true
+
+ingress:
+  enabled: true
+  annotations: []
+  hosts:
+    - host: "*.elb.ap-southeast-1.amazonaws.com"
+      paths:
+        - path: /stg
+          pathType: Prefix
