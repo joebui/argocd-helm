@@ -5,7 +5,7 @@
 replicaCount: 2
 
 blueGreen:
-  enabled: true
+  enabled: false
   image:
     repository: nginx
     pullPolicy: IfNotPresent
