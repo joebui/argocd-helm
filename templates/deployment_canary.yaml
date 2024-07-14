@@ -1,16 +1,19 @@
+{{- if .Values.canary.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "nginx-app.fullname" . }}
+  name: {{ include "nginx-app.fullname" . }}-canary
   labels:
     {{- include "nginx-app.labels" . | nindent 4 }}
+    {{- include "nginx-app.canaryLabels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.canary.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
       {{- include "nginx-app.selectorLabels" . | nindent 6 }}
+      {{- include "nginx-app.canaryLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -19,6 +22,7 @@ spec:
       {{- end }}
       labels:
         {{- include "nginx-app.labels" . | nindent 8 }}
+        {{- include "nginx-app.canaryLabels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -34,8 +38,8 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.canary.image.repository }}:{{ .Values.canary.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.canary.image.pullPolicy }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -66,3 +70,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+{{- end }}

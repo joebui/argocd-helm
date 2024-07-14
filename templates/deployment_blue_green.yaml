@@ -1,9 +1,11 @@
+{{- if .Values.blueGreen.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "nginx-app.fullname" . }}
+  name: {{ include "nginx-app.fullname" . }}-blue-green
   labels:
     {{- include "nginx-app.labels" . | nindent 4 }}
+    {{- include "nginx-app.blueGreenLabels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -11,6 +13,7 @@ spec:
   selector:
     matchLabels:
       {{- include "nginx-app.selectorLabels" . | nindent 6 }}
+      {{- include "nginx-app.blueGreenLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -19,6 +22,7 @@ spec:
       {{- end }}
       labels:
         {{- include "nginx-app.labels" . | nindent 8 }}
+        {{- include "nginx-app.blueGreenLabels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -34,8 +38,8 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.blueGreen.image.repository }}:{{ .Values.blueGreen.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.blueGreen.image.pullPolicy }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -66,3 +70,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+{{- end }}
