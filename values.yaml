@@ -12,7 +12,7 @@ blueGreen:
     tag: latest
 
 canary:
-  enabled: false
+  enabled: true
   replicaCount: 1
   image:
     repository: nginx
