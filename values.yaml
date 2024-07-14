@@ -5,14 +5,14 @@
 replicaCount: 2
 
 blueGreen:
-  enabled: false
+  enabled: true
   image:
     repository: nginx
     pullPolicy: IfNotPresent
     tag: latest
 
 canary:
-  enabled: true
+  enabled: false
   replicaCount: 1
   image:
     repository: nginx
